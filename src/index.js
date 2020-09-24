@@ -7,6 +7,7 @@ function install(Vue, globalOptions = {}) {
   let cmp = null
   const queue = []
   const property = globalOptions.property || '$toast'
+  const attach = globalOptions.attach || 'body'
 
   function createCmp(options) {
     const component = new ToastConstructor()
@@ -20,7 +21,7 @@ function install(Vue, globalOptions = {}) {
     }
 
     Object.assign(component, componentOptions)
-    document.body.appendChild(component.$mount().$el)
+    document.querySelector(attach).appendChild(component.$mount().$el)
 
     return component
   }
